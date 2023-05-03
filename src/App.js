@@ -2,16 +2,17 @@ import React from 'react';
 import Signin from './components/Signin';
 import Signup from './components/Signup';
 import Account from './components/Account';
+import Home from './components/Home';
 import { Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import ResponsiveAppBar from './components/ResponsiveAppBar';
 
 function App() {
   return (
     <div>
-      <h1 className='text-center text-3xl font-bold'>
-        Firebase Auth & Context
-      </h1>
+      <ResponsiveAppBar />
+
       <AuthContextProvider>
         <Routes>
           <Route path='/' element={<Signin />} />
@@ -22,6 +23,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/home'
+            element={
+              <ProtectedRoute>
+                <Home />
               </ProtectedRoute>
             }
           />

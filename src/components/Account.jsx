@@ -1,6 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../context/AuthContext';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 const Account = () => {
   const { user, logout } = UserAuth();
@@ -17,6 +19,9 @@ const Account = () => {
   };
 
   return (
+
+    <Container maxWidth="xl">
+    <Box sx={{ bgcolor: '#cfe8fc', height: '80vh' }}>
     <div className='max-w-[600px] mx-auto my-16 p-4'>
       <h1 className='text-2xl font-bold py-4'>Account</h1>
       <p>User Email: {user && user.email}</p>
@@ -25,6 +30,10 @@ const Account = () => {
         Logout
       </button>
     </div>
+    </Box>
+  </Container>
+
+
   );
 };
 
