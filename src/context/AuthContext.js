@@ -8,6 +8,8 @@ import {
   signInWithPopup
 } from 'firebase/auth';
 import { auth } from '../firebase';
+import ResponsiveAppBar from '../components/ResponsiveAppBar';
+import { Container } from '@mui/material';
 
 const UserContext = createContext();
 
@@ -43,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
 
   return (
     <UserContext.Provider value={{ createUser, user, logout, signIn, signInWithGoogle }}>
+      {user && <ResponsiveAppBar />}
       {children}
     </UserContext.Provider>
   );

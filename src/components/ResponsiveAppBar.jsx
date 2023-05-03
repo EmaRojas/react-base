@@ -15,11 +15,12 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const { user } = UserAuth();
   const logout = () => {
     return signOut(auth)
   }
@@ -40,9 +41,8 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <Toolbar sx={{ flexWrap: 'wrap' }}>
+          
           <Typography
             variant="h6"
             noWrap
@@ -131,7 +131,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt={user.displayName} src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -157,7 +157,6 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
         </Toolbar>
-      </Container>
     </AppBar>
   );
 }
